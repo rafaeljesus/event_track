@@ -14,7 +14,9 @@ defmodule EventTrack.Mixfile do
   #
   # Type "mix help compile.app" for more information
   def application do
-    [applications: [:logger, :maru], mod: {EventTrack, []}]
+    [applications: [:logger, :maru, :ecto, :mongodb_ecto],
+      mod: {EventTrack, []}
+    ]
   end
 
   # Dependencies can be Hex packages:
@@ -27,6 +29,11 @@ defmodule EventTrack.Mixfile do
   #
   # Type "mix help deps" for more examples and options
   defp deps do
-    [ {:maru, "~> 0.8"} ]
+    [
+      {:maru, "~> 0.9.6"},
+      {:cors_plug, "~> 1.1"},
+      {:ecto, "~> 1.0"},
+      {:mongodb_ecto, "~> 0.1.4"}
+    ]
   end
 end
