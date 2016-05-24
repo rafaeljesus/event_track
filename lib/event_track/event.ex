@@ -1,8 +1,19 @@
 defmodule EventTrack.Event do
-  use Ecto.Model
+  use Ecto.Schema
 
-  @primary_key {:id, :binary_id, autogenerate: true}
+  import Ecto.Changeset
+
+  @required_fields ~w(name)
+  @optional_fields ~w(status, paylaod)
+
   schema "event" do
     field :name
+    field :status
+    field :paylaod, :map
+  end
+
+  def changeset(event, params \\ :empty) do
+    event
+    |> cast(params, @required_fields, @optional_fields)
   end
 end
