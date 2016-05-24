@@ -1,8 +1,8 @@
 defmodule EventTrackTest do
   use ExUnit.Case
-  doctest EventTrack
+  use Maru.Test, for: EventTrack.API
 
-  test "the truth" do
-    assert 1 + 1 == 2
+  test "/events" do
+    assert %Plug.Conn{} = conn(:get, "/events") |> make_response
   end
 end
