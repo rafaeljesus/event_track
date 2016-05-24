@@ -6,7 +6,7 @@ defmodule EventTrack.Router.Index do
 
   namespace :events do
     get do
-      json conn, Repo.all
+      json conn, Repo.all(Event)
     end
 
     params do

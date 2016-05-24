@@ -6,6 +6,8 @@ defmodule EventTrack.Event do
   @required_fields ~w(name)
   @optional_fields ~w(status, paylaod)
 
+  @primary_key {:id, :binary_id, autogenerate: true}
+  @derive {Poison.Encoder, only: [:name, :status, :paylaod]}
   schema "event" do
     field :name
     field :status
