@@ -1,20 +1,37 @@
 # EventTrack
 
-**TODO: Add description**
+** Record any actions your system perform, along with any properties that describe the action
 
 ## Installation
+```bash
+git clone https://github.com/rafaeljesus/event_track.git
+cd event_track
+mix deps.get
+```
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed as:
+## Running server
+To start the serve execute:
+```bash
+iex -S mix
+```
 
-  1. Add event_track to your list of dependencies in `mix.exs`:
+## Create a Event
+`curl -X POST localhost:3000/events \`
+`-d 'event=order_creted' \`
+`-d 'status=completed'`
 
-        def deps do
-          [{:event_track, "~> 0.0.1"}]
-        end
+## Built with
+- [elixir](http://elixir-lang.org) Backend is a elixir 1.2.
+- [maru](https://github.com/falood/maru) API is exposed by maru. HTTP microservices
+- [Mongodb](https://www.mongodb.com) Mongodb as a data store.
 
-  2. Ensure event_track is started before your application:
+## Contributing
+- Fork it
+- Create your feature branch (`git checkout -b my-new-feature`)
+- Commit your changes (`git commit -am 'Add some feature'`)
+- Push to the branch (`git push origin my-new-feature`)
+- Create new Pull Request
 
-        def application do
-          [applications: [:event_track]]
-        end
+### Maintaners
 
+* [Rafael Jesus](https://github.com/rafaeljesus)

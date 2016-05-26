@@ -3,6 +3,7 @@ defmodule EventTrack.API do
 
   plug CORSPlug
   plug Plug.Logger
+  plug Plug.Parsers, parsers: [:json], json_decoder: Poison
 
   mount EventTrack.Router.Index
 

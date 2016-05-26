@@ -1,6 +1,5 @@
 defmodule EventTrack.Router.Index do
   use Maru.Router
-
   alias EventTrack.Event
   alias EventTrack.Repo
 
@@ -12,7 +11,7 @@ defmodule EventTrack.Router.Index do
     params do
       requires :name, type: String
       optional :status, type: String
-      optional :paylaod, type: JSON
+      optional :payload, type: Map
     end
     post do
       changeset = Event.changeset(%Event{}, params)
