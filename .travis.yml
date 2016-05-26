@@ -1,0 +1,15 @@
+language: elixir
+elixir:
+  - 1.2.2
+otp_release:
+  - 18.2.1
+services:
+  - mongodb
+before_script:
+  - sleep 15
+  - mongo mydb_test --eval 'db.addUser("travis", "test");'
+install:
+  - mix local.hex --force
+  - mix deps.get
+after_script:
+  - mix coveralls.circle
