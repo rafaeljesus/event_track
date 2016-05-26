@@ -1,6 +1,8 @@
 # EventTrack
 
-** Record any actions your system perform, along with any properties that describe the action
+[![Build Status](https://travis-ci.org/rafaeljesus/event_track.svg?branch=master)](https://travis-ci.org/rafaeljesus/event_track)
+
+* Record any actions your system perform, along with any properties that describe the action
 
 ## Installation
 ```bash
