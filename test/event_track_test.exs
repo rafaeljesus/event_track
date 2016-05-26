@@ -3,7 +3,9 @@ defmodule EventTrackTest do
   use Maru.Test, for: EventTrack.API
 
   test "GET /events" do
-    assert %Plug.Conn{} = conn(:get, "/events") |> make_response
+    conn = conn(:get, "/events") |> make_response
+    assert conn.state == :sent
+    assert conn.status == 200
   end
 
   test "POST /events" do
