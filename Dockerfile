@@ -1,13 +1,14 @@
-FROM aweiker/alpine-elixir:latest
+FROM aweiker/alpine-elixir
 
-RUN mkdir -p /usr/src/event_track
+RUN mkdir -p /event_track
 
-WORKDIR /usr/src/event_track
+WORKDIR /event_track
 
-COPY mix.exs /usr/src/event_track/
+# COPY mix.exs /event_track/
+# RUN mix deps.get
+
+COPY . /event_track/
 RUN mix deps.get
-
-COPY . /usr/src/event_track/
 
 EXPOSE 3000
 
