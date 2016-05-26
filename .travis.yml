@@ -1,9 +1,14 @@
+sudo: required
+
 language: elixir
+
 elixir:
   - 1.2.2
 otp_release:
   - 18.2.1
+
 services:
+  - docker
   - mongodb
 before_script:
   - sleep 15
@@ -11,5 +16,10 @@ before_script:
 install:
   - mix local.hex --force
   - mix deps.get
+script:
+  - docker build -t rafaeljesus/event_track .
+  - docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+  - docker tag rafaeljesus/event_track rafaeljesus/event_track:master
+  - docker push rafaeljesus/event_track:master
 after_script:
   - mix coveralls.circle
