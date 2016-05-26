@@ -5,7 +5,6 @@ defmodule EventTrack.Mixfile do
     [app: :event_track,
      version: "0.0.1",
      elixir: "~> 1.2",
-     test_coverage: [tool: ExCoveralls],
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
      description: description,
@@ -37,8 +36,7 @@ defmodule EventTrack.Mixfile do
       {:poison, "~> 2.0", override: true},
       {:cors_plug, "~> 1.1.1"},
       {:ecto, "~> 1.0.4", override: true},
-      {:mongodb_ecto, "~> 0.1.4"},
-      {:excoveralls, "~> 0.5", only: :test}
+      {:mongodb_ecto, "~> 0.1.4"}
     ]
   end
 
