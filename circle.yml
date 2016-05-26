@@ -1,3 +1,7 @@
+machine:
+  services:
+    - docker
+
 dependencies:
   pre:
     - chmod a+x script/ci/prepare.sh
@@ -9,8 +13,15 @@ dependencies:
     - _build
     - deps
 
+deployment:
+  master:
+    branch: master
+    commands:
+      - docker build -t rafaeljesus/event_track .
+      - docker login -e $DOCKERHUB_EMAIL -u $DOCKERHUB_USER -p $DOCKERHUB_PASS
+      - docker tag rafaeljesus/event_track rafaeljesus/event_track:master
+      - docker push rafaeljesus/event_track:master
+
 test:
   override:
-    - export MIX_ENV="test"
-    - export PATH="$HOME/dependencies/erlang/bin:$HOME/dependencies/elixir/bin:$PATH"
-    - mix coveralls.circle
+    - bash script/ci/tests.sh
