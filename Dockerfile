@@ -1,11 +1,14 @@
 FROM aweiker/alpine-elixir:1.2.1
 
-ENV PORT=3000 MIX_ENV=prod
-ENV APP_NAME=event_track
+RUN mkdir -p /usr/src/event_track
 
-WORKDIR /$APP_NAME
-ADD rel/$APP_NAME .
+WORKDIR /usr/src/event_track
 
-EXPOSE $PORT
+COPY mix.ex /usr/src/event_track/
+RUN mix deps.get
 
-CMD trap exit TERM; /$APP_NAME/bin/$APP_NAME foreground & wait
+COPY . /usr/src/event_track/
+
+EXPOSE 3000
+
+CMD ["iex", "-S", "mix"]
