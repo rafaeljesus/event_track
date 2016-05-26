@@ -2,11 +2,9 @@
 
 set -e
 
-# Keep in sync with elixir_buildpack.config (heroku config)
-export ERLANG_VERSION="18.2.1"
-export ELIXIR_VERSION="v1.2.5"
+export ERLANG_VERSION=$(cat elixir_buildpack.config | grep erlang_version | tr "=" " " | awk '{ print $2 }')
+export ELIXIR_VERSION=v$(cat elixir_buildpack.config | grep elixir_version | tr "=" " " | awk '{ print $2 }')
 export INSTALL_PATH="$HOME/dependencies"
-
 export ERLANG_PATH="$INSTALL_PATH/otp_src_$ERLANG_VERSION"
 export ELIXIR_PATH="$INSTALL_PATH/elixir_$ELIXIR_VERSION"
 

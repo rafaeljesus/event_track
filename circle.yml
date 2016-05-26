@@ -1,5 +1,7 @@
 dependencies:
   pre:
+    - chmod a+x script/ci/prepare.sh
+    - chmod a+x script/ci/tests.sh
     - script/ci/prepare.sh
   cache_directories:
     - ~/dependencies
