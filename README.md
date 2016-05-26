@@ -1,6 +1,6 @@
 # EventTrack
 
-[![Build Status](https://travis-ci.org/rafaeljesus/event_track.svg?branch=master)](https://travis-ci.org/rafaeljesus/event_track)
+[![CircleCI](https://circleci.com/gh/rafaeljesus/event_track.svg?style=svg)](https://circleci.com/gh/rafaeljesus/event_track)
 
 * Record any actions your system perform, along with any properties that describe the action
 
@@ -19,13 +19,26 @@ iex -S mix
 
 ## Create a Event
 `curl -X POST localhost:3000/events \`
+
 `-d 'event=order_creted' \`
+
 `-d 'status=completed'`
 
 ## Built with
 - [elixir](http://elixir-lang.org) Backend is a elixir 1.2.
 - [maru](https://github.com/falood/maru) API is exposed by maru. HTTP microservices
 - [Mongodb](https://www.mongodb.com) Mongodb as a data store.
+
+## Docker
+This repository has automated image builds on hub.docker.com.
+
+run:
+```
+$ docker-machine start default
+$ eval $(docker-machine env default)
+$ docker-compose up
+$ curl `docker-machine ip default`:3000
+```
 
 ## Contributing
 - Fork it

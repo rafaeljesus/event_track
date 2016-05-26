@@ -1,6 +1,6 @@
 machine:
   environment:
-    PATH: "$HOME/.asdf/bin:$HOME/.asdf/shims:$PATH"  
+    PATH: "$HOME/.asdf/bin:$HOME/.asdf/shims:$PATH"
   services:
     - docker
 
