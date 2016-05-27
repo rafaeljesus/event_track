@@ -1,5 +1,5 @@
 defmodule EventTrackTest do
-  use ExUnit.Case
+  use ExUnit.Case, async: true
   use Maru.Test, for: EventTrack.API
 
   test "GET /v1/events" do
