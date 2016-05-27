@@ -3,6 +3,8 @@ defmodule EventTrack.Router.Index do
   alias EventTrack.Event
   alias EventTrack.Repo
 
+  version "v1"
+
   namespace :events do
     get do
       json conn, Repo.all(Event)

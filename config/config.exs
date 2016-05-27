@@ -30,6 +30,9 @@ use Mix.Config
 #     import_config "#{Mix.env}.exs"
 
 config :maru, EventTrack.API,
+  versioning: [
+    using: :path
+  ],
   http: [port: 3000]
 
 config :event_track, EventTrack.Repo,
