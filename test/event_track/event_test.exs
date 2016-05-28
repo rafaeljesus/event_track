@@ -1,7 +1,6 @@
 defmodule EventTrack.EventTest do
   use ExUnit.Case
-  alias EventTrack.Repo
-  alias EventTrack.Event
+  alias EventTrack.{Repo, Event}
 
   @body %{
     name: "order_created",

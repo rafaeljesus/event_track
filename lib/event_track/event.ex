@@ -2,8 +2,7 @@ defmodule EventTrack.Event do
   use Ecto.Schema
   import Ecto.Query
   import Ecto.Changeset
-  alias EventTrack.Repo
-  alias EventTrack.Event
+  alias EventTrack.{Repo, Event}
 
   @required_fields ~w(name status payload)
   @optional_fields ~w()
