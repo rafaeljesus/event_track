@@ -1,13 +1,12 @@
 defmodule EventTrack.Router.Index do
   use Maru.Router
   alias EventTrack.Event
-  alias EventTrack.Repo
 
   version "v1"
 
   namespace :events do
     get do
-      json conn, Repo.all(Event)
+      json conn, Event.search(params)
     end
 
     params do
@@ -16,8 +15,7 @@ defmodule EventTrack.Router.Index do
       optional :payload, type: Map
     end
     post do
-      changeset = Event.changeset(%Event{}, params)
-      case Repo.insert(changeset) do
+      case Event.create(params) do
         {:ok, event} -> json conn, event
         {:error, _changeset} ->
           conn

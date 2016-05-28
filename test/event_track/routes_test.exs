@@ -1,7 +1,6 @@
 defmodule EventTrack.RouterTest do
   use ExUnit.Case
   use Maru.Test, for: EventTrack.API
-
   alias EventTrack.Repo
   alias EventTrack.Event
 
@@ -16,10 +15,8 @@ defmodule EventTrack.RouterTest do
   }
 
   setup do
-    changeset = Event.changeset(%Event{}, @body)
-    case Repo.insert(changeset) do
+    case Event.create(@body) do
       {:ok, model} -> assert model.name == @body.name
-      {:error, _changeset} -> assert changeset.valid?
     end
 
     on_exit fn ->

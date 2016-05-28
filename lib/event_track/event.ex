@@ -1,6 +1,9 @@
 defmodule EventTrack.Event do
   use Ecto.Schema
+  import Ecto.Query
   import Ecto.Changeset
+  alias EventTrack.Repo
+  alias EventTrack.Event
 
   @required_fields ~w(name status payload)
   @optional_fields ~w()
@@ -11,6 +14,17 @@ defmodule EventTrack.Event do
     field :name
     field :status
     field :payload, :map
+  end
+
+  def search(params \\ :empty) do
+    query = from e in Event,
+      where: e.name == ^params.name
+    Repo.all(query)
+  end
+
+  def create(params) do
+    changeset(%Event{}, params)
+    |> Repo.insert
   end
 
   def changeset(event, params \\ :empty) do
