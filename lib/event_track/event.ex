@@ -9,15 +9,26 @@ defmodule EventTrack.Event do
 
   @primary_key {:id, :binary_id, autogenerate: true}
   @derive {Poison.Encoder, only: [:id, :name, :status, :payload]}
+  @timestamps_opts
   schema "event" do
     field :name
     field :status
     field :payload, :map
   end
 
-  def search(params) do
-    query = from e in Event, where: e.name == ^params["name"]
-    Repo.all(query)
+  def search(params \\ :empty) do
+    page = Event
+      |> where([e], e.name == ^params["name"])
+      |> order_by([e], desc: e.inserted_at)
+      |> Repo.paginate(params)
+
+    %{
+      events: page.entries,
+      page_number: page.page_number,
+      page_size: page.page_size,
+      total_pages: page.total_pages,
+      total_entries: page.total_entries
+    }
   end
 
   def create(params) do
