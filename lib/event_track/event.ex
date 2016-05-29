@@ -16,7 +16,6 @@ defmodule EventTrack.Event do
   end
 
   def search(params) do
-    IO.inspect(params)
     query = from e in Event, where: e.name == ^params["name"]
     Repo.all(query)
   end
