@@ -15,9 +15,9 @@ defmodule EventTrack.Event do
     field :payload, :map
   end
 
-  def search(params \\ :empty) do
-    query = from e in Event,
-      where: e.name == ^params.name
+  def search(params) do
+    IO.inspect(params)
+    query = from e in Event, where: e.name == ^params["name"]
     Repo.all(query)
   end
 

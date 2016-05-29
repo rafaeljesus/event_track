@@ -23,11 +23,13 @@ defmodule EventTrack.RouterTest do
     end
   end
 
-  # test "GET /v1/events" do
-  #   conn = conn(:get, "/v1/events?name=#{@body.name}") |> make_response
-  #   assert conn.state == :sent
-  #   assert conn.status == 200
-  # end
+  test "GET /v1/events" do
+    conn = conn(:get, "/v1/events?name=#{@body.name}")
+    |> put_req_header("content-type", "application/json")
+    |> make_response
+    assert conn.state == :sent
+    assert conn.status == 200
+  end
 
   test "POST /v1/events" do
     conn = conn(:post, "/v1/events", @body)

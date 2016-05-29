@@ -6,9 +6,8 @@ defmodule EventTrack.Router.Index do
 
   namespace :events do
     get do
-      fetch_query_params(conn, params)
-      IO.inspect(params)
-      json conn, Event.search(params)
+      conn = fetch_query_params(conn)
+      json conn, Event.search(conn.params)
     end
 
     params do
