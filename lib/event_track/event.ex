@@ -2,7 +2,7 @@ defmodule EventTrack.Event do
   use Ecto.Schema
   import Ecto.Query
   import Ecto.Changeset
-  alias EventTrack.{Repo, Event}
+  alias EventTrack.{Repo, Event, Paginator}
 
   @required_fields ~w(name status payload)
   @optional_fields ~w()
@@ -19,15 +19,13 @@ defmodule EventTrack.Event do
   def search(params \\ :empty) do
     page = Event
       |> where([e], e.name == ^params["name"])
-      |> order_by([e], desc: e.inserted_at)
-      |> Repo.paginate(params)
+      |> Paginator.new(params)
 
     %{
       events: page.entries,
       page_number: page.page_number,
       page_size: page.page_size,
       total_pages: page.total_pages,
-      total_entries: page.total_entries
     }
   end
 

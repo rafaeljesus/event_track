@@ -36,8 +36,7 @@ defmodule EventTrack.Mixfile do
       {:poison, "~> 2.0", override: true},
       {:cors_plug, "~> 1.1.1"},
       {:ecto, "~> 1.0.7", override: true},
-      {:mongodb_ecto, "~> 0.1.4"},
-      {:scrivener, "~> 1.2.0"}
+      {:mongodb_ecto, "~> 0.1.4"}
     ]
   end
 

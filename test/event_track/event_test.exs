@@ -26,10 +26,12 @@ defmodule EventTrack.EventTest do
   end
 
   test "should search by name" do
-    models = with {:ok, model} <- Event.create(@body),
+    res = with {:ok, model} <- Event.create(@body),
       do: Event.search(%{"name" => model.name})
 
-    assert 1 == length models
-    assert @body["name"] == first(models).name
+    assert 1 == length res.events
+    assert 1 == res.page_number
+    assert 1 == res.total_pages
+    assert 10 == res.page_size
   end
 end
