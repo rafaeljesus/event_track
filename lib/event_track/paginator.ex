@@ -1,6 +1,6 @@
 defmodule EventTrack.Paginator do
   import Ecto.Query
-  alias EventTrack.{Repo, Paginator}
+  alias EventTrack.{Repo}
 
   defstruct [:entries, :page_number, :page_size, :total_pages]
 
@@ -8,7 +8,7 @@ defmodule EventTrack.Paginator do
     page_number = params |> Dict.get("page", 1) |> to_int
     page_size = params |> Dict.get("page_size", 10) |> to_int
 
-    %Paginator{
+    %__MODULE__{
       entries: entries(query, page_number, page_size),
       page_number: page_number,
       page_size: page_size,
