@@ -1,6 +1,5 @@
 defmodule EventTrack.Router.Index do
   use Maru.Router
-  import Ecto.Query
   alias EventTrack.{Repo, Event}
 
   version "v1"
