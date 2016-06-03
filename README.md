@@ -9,7 +9,7 @@
   - A minimal docker alpine container
   - Automatically pushes it to dockerhub if tests pass
 
-# Deploying to Docker Hub
+## Deploying to Docker Hub
   This project deploys the built image to Docker Hub after successfully building and testing. See the `deployment` section of [circle.yml](circle.yml) for details on how this is done. Note that three environment variables need to be set on CircleCI for the deployment to work:
 
   * DOCKER_EMAIL - The email address associated with the user with push access to the Docker Hub repository
