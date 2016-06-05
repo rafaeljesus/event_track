@@ -19,12 +19,21 @@ To start the serve execute:
 iex -S mix
 ```
 
-## Create a Event
-`curl -X POST localhost:3000/events \`
+## API Documentation
+### create
+```bash
+curl -X POST 'http://localhost:3000/v1/events' \
+ -d 'name=order_received' \
+ -d 'status=success' \
+ -d 'payload[price]=29.99' \
+ -d 'payload[quantity]=1' \
+ -d 'payload[description]=Programming Elixir'
+```
 
-`-d 'event=order_creted' \`
-
-`-d 'status=completed'`
+### search
+```bash
+curl -X GET 'http://localhost:3000/v1/events/?status=error&page=2&page_size=25'
+```
 
 ## Built with
 - [elixir](http://elixir-lang.org) Backend is a elixir 1.2.
