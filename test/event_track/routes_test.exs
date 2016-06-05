@@ -14,17 +14,17 @@ defmodule EventTrack.RouterTest do
   }
 
   setup do
-    case Event.create(@valid_attrs) do
-      {:ok, model} -> assert model.name == @valid_attrs.name
-    end
+    changeset = Event.changeset(%Event{}, @valid_attrs)
+    {:ok, model} = Repo.insert(changeset)
 
     on_exit fn ->
       Repo.delete_all(Event)
     end
+    {:ok, %{model: model}}
   end
 
-  test "GET /v1/events" do
-    conn = conn(:get, "/v1/events?name=#{@valid_attrs.name}")
+  test "GET /v1/events", %{model: model} do
+    conn = conn(:get, "/v1/events?name=#{model.name}")
     |> put_req_header("content-type", "application/json")
     |> make_response
     assert conn.state == :sent

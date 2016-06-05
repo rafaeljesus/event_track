@@ -1,37 +1,25 @@
 defmodule EventTrack.EventTest do
   use ExUnit.Case
-  alias EventTrack.{Repo, Event}
-  import List
+  alias EventTrack.{Event}
 
-  @body %{
-    "name" => "order_created",
-    "status" => "success",
-    "payload" => %{
-      "price" => 2.00,
-      "quantity" => 1,
-      "description" => "foo"
+  @invalid_attrs %{}
+  @valid_attrs %{
+    name: "order_created",
+    status: "success",
+    payload: %{
+      price:  2.00,
+      quantity:  1,
+      description: "foo"
     }
   }
 
-  setup do
-    on_exit fn ->
-      Repo.delete_all(Event)
-    end
+  test "changeset with valid attributes" do
+    changeset = Event.changeset(%Event{}, @valid_attrs)
+    assert changeset.valid?
   end
 
-  test "should create event" do
-    case Event.create(@body) do
-      {:ok, model} -> assert model.name == @body["name"]
-    end
-  end
-
-  test "should search by name" do
-    res = with {:ok, model} <- Event.create(@body),
-      do: Event.search(%{"name" => model.name})
-
-    assert 1 == length res.events
-    assert 1 == res.page_number
-    assert 1 == res.total_pages
-    assert 10 == res.page_size
+  test "changeset with invalid attributes" do
+    changeset = Event.changeset(%Event{}, @invalid_attrs)
+    refute changeset.valid?
   end
 end
