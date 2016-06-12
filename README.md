@@ -1,6 +1,7 @@
 # EventTrack
 
 [![CircleCI](https://circleci.com/gh/rafaeljesus/event_track.svg?style=svg)](https://circleci.com/gh/rafaeljesus/event_track)
+[![Deps Status](https://beta.hexfaktor.org/badge/all/github/edgurgel/poxa.svg)](https://beta.hexfaktor.org/github/rafaeljesus/event_track)
 
 * Record any actions your system perform, along with any properties that describe the action
 * A minimal docker alpine container
