@@ -12,4 +12,3 @@ defmodule EventTrack.Supervisor do
     Supervisor.start_link(@name, [], name: @name)
   end
 end
-
